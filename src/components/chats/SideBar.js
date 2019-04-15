@@ -7,15 +7,6 @@ import { MdEject } from 'react-icons/md'
 
 export default class SideBar extends Component {
 
-    state = {
-        users: ''
-    }
-
-    handleOnClick = e => {
-    e.preventDefault();
-    this.setState({ value: this.refs.users.value})
-  };
-
   render() {
       const {chats, activeChat, user, setActiveChat, logout} = this.props
     return (
