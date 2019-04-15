@@ -1,7 +1,8 @@
 // server-side socket.io
 
 const io = require('./index').io
-const { VERIFY_USER, USER_CONNECTED, USER_DISCONNECTED, LOGOUT, COMMUNITY_CHAT} = require('../Events')
+const { VERIFY_USER, USER_CONNECTED, USER_DISCONNECTED, LOGOUT, 
+    COMMUNITY_CHAT, MESSAGE_RECEIVED, MESSAGE_SENT} = require('../Events')
 const {createUser, creatMessage, createChat } = require('../Factories')
 
 let connectedUsers = {}
@@ -10,6 +11,8 @@ let communityChat = createChat();
 
 module.exports = function(socket){
     console.log("Socket Id: "+ socket.id); 
+
+    let sendMessageToChatFromUser;
 
     // verify username
     socket.on( VERIFY_USER, (nickname, callback) => {
@@ -25,6 +28,7 @@ module.exports = function(socket){
     socket.on(USER_CONNECTED, (user) =>{
         connectedUsers = addUser(connectedUsers, user)
         socket.user = user;
+        sendMessageToChatFromUser = sendMessageToChat(user.name)
         io.emit(USER_CONNECTED, connectedUsers)
         console.log("Connected to chat ",connectedUsers)
     })
@@ -52,7 +56,18 @@ module.exports = function(socket){
     socket.on(COMMUNITY_CHAT, (callback)=>{
         callback(communityChat)
     })
+
+    socket.on(MESSAGE_SENT, ({chatId, message})=> {
+        sendMessageToChatFromUser(chatId, message)
+    })
 }
+
+    // send message
+    function sendMessageToChat(sender){
+        return(chatId, message) => {
+            io.emit(`${MESSAGE_RECEIVED}-${chatId}`, creatMessage({message, sender}))
+        }
+    }
 
     // user logout
 

@@ -72,8 +72,8 @@ export default class ChatContainer extends Component {
     }
 
   render() {
-      const { user, logout } = this.props
-      const { chats, activeChat } = this.state
+    const { user, logout } = this.props
+    const { chats, activeChat } = this.state
 
     return (
       <div className="container">
@@ -89,10 +89,11 @@ export default class ChatContainer extends Component {
             activeChat !== null ? (
                 <div className="chat-room">
                     <ChatHeading name={activeChat.name}/>
-                    <Messages
-                        messages={activeChat.messages}
-                        user={user}
-                        typingUsers={activeChat.typingUsers}/>
+                    <Messages 
+						messages={activeChat.messages}
+						user={user}
+						typingUsers={activeChat.typingUsers}
+						/>
                     <MessageInput
                         sendMessage = {
                             (message) => {

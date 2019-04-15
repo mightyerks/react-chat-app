@@ -13,7 +13,7 @@ export default class LoginForm extends Component {
 
     setUser = ({user, isUser}) => {
         if(isUser){
-            this.setError("Sorry, that nickname is already taken.")
+            this.setError("Your username is not unique enough")
         } else {
             this.setError("")
             this.props.setUser(user)
@@ -54,8 +54,8 @@ export default class LoginForm extends Component {
                 onChange={this.handleChange}
                 placeholder={'Username'}
             />
-            </form>
             <div className="error">{error? error:null}</div>
+            </form>
         </div>
     );
   }
