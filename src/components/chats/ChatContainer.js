@@ -28,6 +28,7 @@ export default class ChatContainer extends Component {
 
     // adds chat to the container, if reset is true removes all chats and sets the chat to the main chat
     addChat= (chat, reset) => {
+        console.log(chat)
         const {socket} = this.props
         const {chats} = this.state
 

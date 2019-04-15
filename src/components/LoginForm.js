@@ -12,11 +12,10 @@ export default class LoginForm extends Component {
     }
 
     setUser = ({user, isUser}) => {
-        console.log("setUser in Login is firing");
-        console.log({user, isUser});
         if(isUser){
             this.setError("Sorry, that nickname is already taken.")
         } else {
+            this.setError("")
             this.props.setUser(user)
         }
     }
