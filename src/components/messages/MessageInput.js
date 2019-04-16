@@ -7,7 +7,7 @@ export default class MessageInput extends Component {
 
     this.state = {
       message:"",
-      isTyping:false
+      // isTyping:false
     }
   }
 
@@ -22,36 +22,36 @@ export default class MessageInput extends Component {
 
   }
 
-  componentWillUnmount() {
-	  this.stopCheckingTyping()
-	}
+  // componentWillUnmount() {
+	//   this.stopCheckingTyping()
+	// }
 
-  sendTyping = ()=>{
-    this.lastUpdateTime = Date.now()
-    if(!this.state.isTyping){
-      this.setState({isTyping:true})
-      this.props.sendTyping(true)
-      this.startCheckingTyping()
-    }
-  }
+  // sendTyping = ()=>{
+  //   this.lastUpdateTime = Date.now()
+  //   if(!this.state.isTyping){
+  //     this.setState({isTyping:true})
+  //     // this.props.sendTyping(true)
+  //     this.startCheckingTyping()
+  //   }
+  // }
 
-  startCheckingTyping = ()=>{
-		console.log("Typing");
-		this.typingInterval = setInterval(()=>{
-			if((Date.now() - this.lastUpdateTime) > 300){
-				this.setState({isTyping:false})
-				this.stopCheckingTyping()
-			}
-		}, 300)
-  }
+  // startCheckingTyping = ()=>{
+	// 	console.log("Typing");
+	// 	this.typingInterval = setInterval(()=>{
+	// 		if((Date.now() - this.lastUpdateTime) > 300){
+	// 			this.setState({isTyping:false})
+	// 			this.stopCheckingTyping()
+	// 		}
+	// 	}, 300)
+  // }
 
-  stopCheckingTyping = ()=>{
-		console.log("Stop Typing");
-		if(this.typingInterval){
-			clearInterval(this.typingInterval)
-			this.props.sendTyping(false)
-		}
-	}
+  // stopCheckingTyping = ()=>{
+	// 	console.log("Stop Typing");
+	// 	if(this.typingInterval){
+	// 		clearInterval(this.typingInterval)
+	// 		this.props.sendTyping(false)
+	// 	}
+	// }
   
 
 
@@ -71,9 +71,9 @@ export default class MessageInput extends Component {
             value={message}
             autoComplete={'off'}
             placeholder="LET'S TALK ABOUT TRUTHS"
-            onKeyUp={
-              e => {e.keyCode !== 13 && this.sendTyping()}
-            }
+            // onKeyUp={
+            //   e => {e.keyCode !== 13 && this.sendTyping()}
+            // }
             onChange= {
               ({target})=> {
                 this.setState({message:target.value})

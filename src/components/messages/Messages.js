@@ -43,7 +43,7 @@ export default class Messages extends Component {
             )
           })
         }
-        {
+        {/* {
           typingUsers.map((name)=>{
             return(
               <div key={name} className="typing-user">
@@ -51,7 +51,7 @@ export default class Messages extends Component {
               </div>
             )
           })
-        }
+        } */}
         </div>
       </div>
     );

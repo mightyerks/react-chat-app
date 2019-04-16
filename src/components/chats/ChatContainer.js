@@ -105,15 +105,13 @@ export default class ChatContainer extends Component {
                                 this.isTyping(activeChat.id, isTyping)
                             }
                         }
-                        
                         />
                 </div>
-            ) : (
+            ):
                 <div className="chat-room choose">
                     <h3>Choose a chat!</h3>
                 </div>
-            )
-        }
+            }
         </div>
       </div>
     )
